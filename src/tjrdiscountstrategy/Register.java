@@ -24,8 +24,8 @@ public class Register {
     
     }
     
-    public void addItemToSale(){
-        
+    public void addItemToSale(String prodId, int qty){
+        // need line item class, line item array in receipt
     }
     
     public void removeItemFromSale(){
