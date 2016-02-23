@@ -9,7 +9,7 @@ package tjrdiscountstrategy;
  *
  * @author trogers8
  */
-public class FakeDatabase {
+public class FakeDatabase implements DatabaseStrategy {
     private Customer[] customers = {
         new Customer("100", "Bob James"),
         new Customer("200", "Sally Smith"),
@@ -22,6 +22,7 @@ public class FakeDatabase {
         new Product("33", "Men's Black Belt", 39.95, new NoDiscount())
     };
     
+    @Override
     public final Customer findCustomerByID(String custId){
         //needs validation
         Customer customer = null;
@@ -35,6 +36,7 @@ public class FakeDatabase {
         return customer;
     }
     
+    @Override
     public final Product findProductByID(String prodId){
         //needs validation
         Product product = null;
