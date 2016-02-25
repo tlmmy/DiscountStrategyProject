@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package tjrdiscountstrategy;
+import java.util.*;
 
 /**
  *
@@ -12,6 +13,7 @@ package tjrdiscountstrategy;
 public class Receipt {
     private DatabaseStrategy db;
     private Customer customer;
+    private ArrayList items = new ArrayList();
 
     public Receipt(String custId, DatabaseStrategy db) {
         setCustomer(db.findCustomerByID(custId));
@@ -38,4 +40,20 @@ public class Receipt {
         //needs validation
         this.db = db;
     }
+
+    public final ArrayList getItems() {
+        return items;
+    }
+
+    public final void setItems(ArrayList items) {
+        // needs validation
+        this.items = items;
+    }
+    
+     public final void addItem(LineItem item){
+        //needs validation
+        items.add(item);
+    }
+    
+    
 }

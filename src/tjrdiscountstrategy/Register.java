@@ -16,19 +16,22 @@ public class Register {
 
        
     
-    public void startNewSale(String custId, DatabaseStrategy db){
+    public final void startNewSale(String custId, DatabaseStrategy db){
         receipt = new Receipt(custId, db); 
     }
     
-    public void endSale(){
+    public final void endSale(){
     
     }
     
-    public void addItemToSale(String prodId, int qty){
+    public final void addItemToSale(String prodId, int qty, DatabaseStrategy db){
         // need line item class, line item array in receipt
+        // needs validation
+        LineItem item = new LineItem(db.findProductByID(prodId), qty);
+        receipt.addItem(item);
     }
     
-    public void removeItemFromSale(){
+    public final void removeItemFromSale(){
         
     }
 
