@@ -42,4 +42,10 @@ public class LineItem {
         return product.getUnitCost() * qty;
     }
     
+    public final String getLineItemInfo(){
+        String data = product.getProdId() + "               " + product.getProdName() + "   " 
+                + this.getQty() + "   " + this.getSubTotal() + "    " + product.getDiscount().getDiscountAmt(qty, product.getUnitCost());
+        return data;
+    }
+    
 }

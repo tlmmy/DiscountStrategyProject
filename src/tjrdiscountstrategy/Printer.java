@@ -13,7 +13,7 @@ public class Printer implements OutputDevice{
 
     @Override
     public void outputReceipt(Receipt receipt) {
-        
+        System.out.println("Product ID       Product Name      Qty Subtotal Discount");
     }
     
 }

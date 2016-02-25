@@ -22,20 +22,24 @@ public class TJRDiscountStrategy {
         //Start talking to objects
         Register register = new Register();
         register.startNewSale("100", db);
+        OutputDevice printer = new Printer();
         
         
         //test so far
         Customer customer = register.getReceipt().getCustomer();
         System.out.println("Customer " + customer.getCustName() + " found and added to receipt");
         
-        register.addItemToSale("11", 2);
-        register.addItemToSale("22", 1);
-        register.addItemToSale("33", 3);
+        register.addItemToSale("11", 3);
+        register.addItemToSale("22", 5);
+        register.addItemToSale("33", 1);
         // test...
         LineItem[] items = register.getReceipt().getLineItems();
+        printer.outputReceipt(register.getReceipt());
         for(LineItem item : items){
-            System.out.println(item.getProduct().getProdName());
+            System.out.println(item.getLineItemInfo());
         }
+        
+        
     }
     
 }

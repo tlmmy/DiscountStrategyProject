@@ -14,6 +14,7 @@ public class Receipt {
     private DatabaseStrategy db;
     private Customer customer;
     private LineItem[] lineItems;
+     
 
     public Receipt(String custId, DatabaseStrategy db) {
         setCustomer(db.findCustomerByID(custId));

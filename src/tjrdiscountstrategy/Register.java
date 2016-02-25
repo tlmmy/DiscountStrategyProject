@@ -12,16 +12,14 @@ package tjrdiscountstrategy;
 public class Register {
     private Receipt receipt;
     private String storeName;
-    
-
-       
+           
     
     public final void startNewSale(String custId, DatabaseStrategy db){
         receipt = new Receipt(custId, db); 
     }
     
-    public final void endSale(){
-    
+    public final void endSale(OutputDevice output){
+        
     }
     
     public final void addItemToSale(String prodId, int qty){
