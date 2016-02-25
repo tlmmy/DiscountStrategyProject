@@ -17,7 +17,7 @@ public class FakeDatabase implements DatabaseStrategy {
     };
     
     private Product[] products = {
-        new Product("11","Brewer's Hat", 29.95, new PercentOffDiscount(.10)),
+        new Product("11", "Brewer's Hat", 29.95, new PercentOffDiscount(.10)),
         new Product("22", "Women's Blouse", 49.95, new FlatAmtDiscount(5.00)),
         new Product("33", "Men's Black Belt", 39.95, new NoDiscount())
     };
@@ -42,9 +42,10 @@ public class FakeDatabase implements DatabaseStrategy {
         Product product = null;
         
         for(Product p: products){
-            if(p.getProdId().equals(prodId))
+            if(p.getProdId().equals(prodId)){
               product = p;
                break;
+            }
         }
         
         return product;

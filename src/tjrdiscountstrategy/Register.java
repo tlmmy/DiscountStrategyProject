@@ -24,11 +24,10 @@ public class Register {
     
     }
     
-    public final void addItemToSale(String prodId, int qty, DatabaseStrategy db){
+    public final void addItemToSale(String prodId, int qty){
         // need line item class, line item array in receipt
         // needs validation
-        LineItem item = new LineItem(db.findProductByID(prodId), qty);
-        receipt.addItem(item);
+        receipt.addItemToReceipt(prodId, qty);
     }
     
     public final void removeItemFromSale(){

@@ -13,11 +13,12 @@ import java.util.*;
 public class Receipt {
     private DatabaseStrategy db;
     private Customer customer;
-    private ArrayList items = new ArrayList();
+    private LineItem[] lineItems;
 
     public Receipt(String custId, DatabaseStrategy db) {
         setCustomer(db.findCustomerByID(custId));
         setDb(db);
+        lineItems = new LineItem[0];
     }
 
     public final Customer getCustomer() {
@@ -41,19 +42,39 @@ public class Receipt {
         this.db = db;
     }
 
-    public final ArrayList getItems() {
-        return items;
+    public final LineItem[] getLineItems() {
+        return lineItems;
     }
 
-    public final void setItems(ArrayList items) {
+    public final void setLineItems(LineItem[] lineItems) {
         // needs validation
-        this.items = items;
+        this.lineItems = lineItems;
     }
+
+  
     
-     public final void addItem(LineItem item){
+     public final void addItemToReceipt(String prodId, int qty){
         //needs validation
-        items.add(item);
+        LineItem item = new LineItem(prodId, qty, db);
+        addItemToArray(lineItems, item);
+        
+        
+        //hard way to manipulate array
+//        for(int i=0; i<lineItems.length; i++){
+//            tempArray[i] = lineItems[i];
+//        }
+//        tempArray[tempArray.length-1] = item;
+//        lineItems = tempArray;
+//        tempArray = null;
     }
+     
+     private void addItemToArray(LineItem[] origArray, LineItem item){
+        LineItem[] tempArray = new LineItem[origArray.length + 1];
+        System.arraycopy(origArray, 0, tempArray, 0, origArray.length);
+        tempArray[tempArray.length-1] = item;
+        origArray = tempArray;
+        lineItems = origArray;
+     }
     
     
 }

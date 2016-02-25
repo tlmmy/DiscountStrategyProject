@@ -14,8 +14,8 @@ public class LineItem {
     private int qty;
     
 
-    public LineItem(Product product, int qty) {
-        setProduct(product);
+    public LineItem(String prodId, int qty, DatabaseStrategy db) {
+        setProduct(db.findProductByID(prodId));
         setQty(qty);
     }
 
@@ -38,6 +38,8 @@ public class LineItem {
     }
     
    
-    
+    public final double getSubTotal(){
+        return product.getUnitCost() * qty;
+    }
     
 }
