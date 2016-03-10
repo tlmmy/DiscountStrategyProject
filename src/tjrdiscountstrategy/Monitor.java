@@ -5,15 +5,18 @@
  */
 package tjrdiscountstrategy;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author trogers8
  */
-public class Monitor implements OutputDevice {
+public class Monitor implements OutputStrategy {
 
     @Override
-    public void outputReceipt(Receipt receipt) {
-        
+    public void outputReceipt(String data) {
+        // needs validation
+         JOptionPane.showMessageDialog(null, data);
     }
     
 }

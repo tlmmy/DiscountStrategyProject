@@ -9,11 +9,13 @@ package tjrdiscountstrategy;
  *
  * @author trogers8
  */
-public class Printer implements OutputDevice{
-
+public class ConsoleOutput implements OutputStrategy {
+    
     @Override
-    public void outputReceipt(Receipt receipt) {
-        System.out.println("Product ID       Product Name      Qty Subtotal Discount");
+    //needs validation
+    public final void outputReceipt(String data){
+        System.out.println(data);    
     }
+
     
 }

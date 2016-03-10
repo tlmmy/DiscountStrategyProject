@@ -15,29 +15,30 @@ public class TJRDiscountStrategy {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // KLUDGE: do configuration here
+         /////////////////////////////////////////////////////////////////
+        // KLUDGE: do configuration here for strategy options:
+        /////////////////////////////////////////////////////////////////
+        
         DatabaseStrategy db = new FakeDatabase();
-               
+        ReceiptFormatStrategy fmt = new VerboseReceiptFormat();
+//        ReceiptFormatStrategy fmt = new SimpleReceiptFormat();
+        OutputStrategy[] outputs = {
+            new ConsoleOutput(),
+            new Monitor()
+        };       
+        // Start talking to objects, pass configuraiton data and customer
+        // data to start sale. Notice how we do NOT depend on any other
+        // classes -- Principal of Least Knowledge
+        Register register = new Register("Kohls Department Store");
+        register.startNewSale("100", db, fmt, outputs);
         
-        //Start talking to objects
-        Register register = new Register();
-        register.startNewSale("100", db);
-        OutputDevice printer = new Printer();
+        register.addItemToSale("11", 2);
+        register.addItemToSale("22", 1);
+        register.addItemToSale("33", 3);
+//        register.removeItemFromArray("33", 3);
         
+        register.endSale();
         
-        //test so far
-        Customer customer = register.getReceipt().getCustomer();
-        System.out.println("Customer " + customer.getCustName() + " found and added to receipt");
-        
-        register.addItemToSale("11", 3);
-        register.addItemToSale("22", 5);
-        register.addItemToSale("33", 1);
-        // test...
-        LineItem[] items = register.getReceipt().getLineItems();
-        printer.outputReceipt(register.getReceipt());
-        for(LineItem item : items){
-            System.out.println(item.getLineItemInfo());
-        }
         
         
     }

@@ -11,8 +11,8 @@ package tjrdiscountstrategy;
  */
 public interface DatabaseStrategy {
 
-    public abstract Customer findCustomerByID(String custId);
+    public abstract Customer findCustomerById(String custId);
 
-    public abstract Product findProductByID(String prodId);
+    public abstract Product findProductById(String prodId);
     
 }

@@ -10,6 +10,6 @@ package tjrdiscountstrategy;
  *
  * @author trogers8
  */
-public interface OutputDevice {
-    public abstract void outputReceipt(Receipt receipt);
+public interface OutputStrategy {
+    public abstract void outputReceipt(String data);
 }

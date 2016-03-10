@@ -23,7 +23,7 @@ public class FakeDatabase implements DatabaseStrategy {
     };
     
     @Override
-    public final Customer findCustomerByID(String custId){
+    public final Customer findCustomerById(String custId){
         //needs validation
         Customer customer = null;
         
@@ -37,7 +37,7 @@ public class FakeDatabase implements DatabaseStrategy {
     }
     
     @Override
-    public final Product findProductByID(String prodId){
+    public final Product findProductById(String prodId){
         //needs validation
         Product product = null;
         

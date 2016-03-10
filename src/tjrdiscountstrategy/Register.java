@@ -12,25 +12,43 @@ package tjrdiscountstrategy;
 public class Register {
     private Receipt receipt;
     private String storeName;
-           
+    private ReceiptFormatStrategy fmt;
+    private OutputStrategy[] outputs;
+
     
-    public final void startNewSale(String custId, DatabaseStrategy db){
-        receipt = new Receipt(custId, db); 
+    public Register(String storeName) {
+        this.storeName = storeName;
     }
     
-    public final void endSale(OutputDevice output){
-        
+    
+    public final void startNewSale(String custId, DatabaseStrategy db,ReceiptFormatStrategy fmt, OutputStrategy[] outputs) {
+        // needs validation
+        receipt = new Receipt(storeName, custId, db);
+        setFmt(fmt);
+        setOutputs(outputs);
     }
     
-    public final void addItemToSale(String prodId, int qty){
-        // need line item class, line item array in receipt
+    
+    public final void endSale() {
+        String data = fmt.format(receipt);
+        for(OutputStrategy out : outputs) {
+            out.outputReceipt(data);
+        }
+    }
+    
+  
+    public final void addItemToSale(String prodId, int qty) {
         // needs validation
         receipt.addItemToReceipt(prodId, qty);
     }
     
-    public final void removeItemFromSale(){
-        
+
+    public final void removeItemFromArray(String prodId, int qty) {
+        // needs validation
+        receipt.removeItemFromArray(prodId, qty);
     }
+    
+
 
     public final Receipt getReceipt() {
         return receipt;
@@ -46,10 +64,26 @@ public class Register {
     }
 
     public final void setStoreName(String storeName) {
-        //needs validation
+        // needs validation
         this.storeName = storeName;
     }
-    
-    
+
+    public final ReceiptFormatStrategy getFmt() {
+        return fmt;
+    }
+
+    public final void setFmt(ReceiptFormatStrategy fmt) {
+        // needs validation
+        this.fmt = fmt;
+    }
+
+    public final OutputStrategy[] getOutputs() {
+        return outputs;
+    }
+
+    public final void setOutputs(OutputStrategy[] outputs) {
+        // needs validation
+        this.outputs = outputs;
+    }
     
 }

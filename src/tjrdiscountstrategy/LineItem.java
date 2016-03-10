@@ -15,7 +15,7 @@ public class LineItem {
     
 
     public LineItem(String prodId, int qty, DatabaseStrategy db) {
-        setProduct(db.findProductByID(prodId));
+        setProduct(db.findProductById(prodId));
         setQty(qty);
     }
 
@@ -35,6 +35,14 @@ public class LineItem {
     public final void setQty(int qty) {
         //needs validation
         this.qty = qty;
+    }
+    
+     public final double getExtPrice() {
+        return qty * product.getUnitCost();
+    }
+     
+      public final double getDiscountedTotal() {
+        return product.getDiscount().getDiscountAmt(qty, product.getUnitCost());
     }
     
    
